@@ -1,0 +1,54 @@
+.card-0,
+.card-1,
+.card-2,
+.card-3 {
+  padding:20px;
+  width:100%;
+}
+
+.alert {
+  color:#543939;
+}
+.scoreCard{
+  font-size:20px;
+  width:40px;
+  height:60px;
+  color:#FFFFFF;
+}
+.card-header{
+    font-size:20px;
+}
+
+.errorMessage{
+  color:#e7cc33;
+}
+#loginButton{
+  width:120px;
+}
+
+.graphic-r{
+  width:100%;
+  height:auto;
+
+  background-image:url("../assets/graphics/rock.png");
+  background-repeat:no-repeat;
+  background-size:cover;
+}
+
+.graphic-s{
+  background-image:url("../assets/graphics/scissors.png");
+  background-repeat:no-repeat;
+  background-size:cover;
+}
+.graphic-p{
+  background-image:url("../assets/graphics/paper.png");
+  background-repeat:no-repeat;
+   background-size:cover;
+}
+div.graphic-r,
+ div.graphic-s,
+ div.graphic-p{
+ border-radius:50%;
+  width:100%;
+  height:270px;
+}

@@ -1,0 +1,121 @@
+<div class="container d-flex justify-content-center" style="margin-top:30px; margin-bottom:30px;">
+  <h1>{{title}}</h1>
+</div>
+<div class="container d-flex justify-content-center" style="max-width: 65rem;" >
+  <div class="card card-1 border-secondary mb-3" *ngIf="authIn" >
+    <div class="card-header">{{title}}</div>
+    <div class="card-body">
+      <h4 class="card-title">An RSP Game</h4>
+      <p class="card-text">The Game has two moods - the AutoPlay and the User Decides - Mood. In the Autoplay Version
+        the computer is selecting the tools for both Computer and Human automatically and two of the Three
+        Draws wins the game.
+        In Manuel Mood, the User Picks up their Tool by Clicking them and with that tool will compete against
+        the Computer. There are un limited number of tries. In the Manual Mood the number of Wins will be
+         recorded for each player until the session is reloaded.
+      <p class="card-text">To Start, an Application Token should be Provided First! The Token is obtainable by
+         contacting the page owner!
+      </p>
+
+      <div class="form-group d-flex justify-content-left" *ngIf="authIn">
+        <div class="row">
+          <div class="col-md-8">
+            <input type="password" (input)="getPassphrase($event)" class="form-control" id="appToken" placeholder="Enter the Access token">
+          </div>
+          <div class="col-md-4">
+            <button id="loginButton" (click)="submitPassphrase()" class="btn btn-primary">Let's Start</button>
+          </div>
+        </div>
+      </div>
+  </div>
+    <div *ngIf="errorMessage" class="alert errorMessage alert-dismissible alert-danger">
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      <strong>Error:</strong> {{errorMessage}}
+    </div>
+  </div>
+  <div class="card card-2 border-info mb-3" *ngIf="haveSomeFun">
+      <div class="card-header">Game Moods</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+            <div class="card border-secondary mb-3 btn btn-outline-secondary" (click)="autoplay('auto')">
+              <div class="card-header">Auto Play</div>
+              <div class="card-body">
+                <div *ngIf="haveSomeFun" class="autoplay">
+                  <span> Computer Chooses for Human too!</span>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div class="col-md-6">
+            <div class="card border-secondary mb-3 btn btn-outline-secondary" (click)="autoplay('manual')">
+              <div class="card-header">User Plays</div>
+              <div class="card-body">
+                  <div *ngIf="callManu">
+                    <span> User Chooses their Own Tool!</span>
+              </div>
+            </div>
+        </div>
+      </div>
+        </div>
+        <div class="row justify-content-center" *ngIf="displayResult">
+          <div class="col-md-6">
+            <div class="alert alert-dismissible {{cssClass}}">
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              <strong>Result: </strong>{{result}}
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+
+  <div class="card card-3 border-secondary mb-3" *ngIf="manuelGame">
+    <div class="card-header card-header-3">User Plays vs. Computer
+      <span *ngIf="quit" class="btn btn-outline-warning" (click)="logout()" style="float:right;">X</span>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4 ">
+          <div class="card border-secondary mb-3 btn btn-outline-secondary" (click)="submitChoice('rock')">
+            <div class="graphic-r"></div>
+            </div>
+        </div>
+        <div class="col-md-4 ">
+          <div class="card border-secondary mb-3 btn btn-outline-secondary" (click)="submitChoice('paper')">
+            <div class="card-header graphic-p"></div>
+          </div>
+        </div>
+        <div class="col-md-4 ">
+          <div class="card border-secondary mb-3 btn btn-outline-secondary" (click)="submitChoice('scissors')">
+            <div class="card-header graphic-s"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center" *ngIf="displayResult">
+        <div class="col-md-6">
+          <div class="alert alert-dismissible {{cssClass}}">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Result: </strong>{{result}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card border-secondary mb-3 btn btn-primary disabled" >
+            <div class="card-header"> User Score</div>
+            <div class="card-body {{cssBgUser}}">
+              <span class="scoreCard"> {{userScore}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card border-secondary mb-3 btn btn-primary disabled" >
+            <div class="card-header"> Computer Score</div>
+            <div class="card-body  {{cssBgComputer}}">
+              <span class="scoreCard ">{{computerScore}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
